@@ -1,0 +1,522 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  12pt,
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrartcl}
+
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+% Make \paragraph and \subparagraph free-standing
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\usepackage{xr}
+\externaldocument{si}
+\usepackage[default]{sourcesanspro}
+\usepackage{sourcecodepro}
+\usepackage{lineno}
+\usepackage{fvextra}
+\linenumbers
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+\KOMAoption{captions}{tablesignature}
+\makeatletter
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Fig.}
+\else
+  \newcommand\figurename{Fig.}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[many]{tcolorbox}}
+\makeatother
+\makeatletter
+\@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}
+\makeatother
+\makeatletter
+\makeatother
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, sharp corners, enhanced, boxrule=0pt, breakable, interior hidden, frame hidden]}{\end{tcolorbox}}\fi
+
+\textbf{Title: Title of your manuscript}
+
+\[ \]
+
+First Author\textsuperscript{1,2}, Second Author\textsuperscript{2}, and
+Third Author\textsuperscript{3}
+
+\[ \]
+
+\textsuperscript{1} First Affiliation
+
+\textsuperscript{2} Second Affiliation
+
+\textsuperscript{3} Third Affiliation
+
+Your abstract.
+
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+This is a manuscript template for Quarto markdown that uses R packages
+\texttt{targets} (\protect\hyperlink{ref-Landau2021}{Landau 2021}) and
+\texttt{stantargets}. \texttt{R/functions.R} contains R codes that I
+often use.
+
+\hypertarget{examples}{%
+\section{Examples}\label{examples}}
+
+\hypertarget{equations}{%
+\subsection{Equations}\label{equations}}
+
+A centered parameterization of the Eight Schools model (Eq.~\ref{eq-cp};
+Gelman et al. (\protect\hyperlink{ref-Gelman2013}{2013})).
+
+\begin{equation}\protect\hypertarget{eq-cp}{}{
+\begin{aligned}
+\mu &\sim N(0,5) \\
+\tau &\sim HalfCauchy(0,5) \\
+\theta_j &\sim N(\mu, \tau) \\
+y_j &\sim N(\theta_j, \sigma_j)
+\end{aligned}
+}\label{eq-cp}\end{equation}
+
+You can group multiple lines of equations to a single equation label.
+
+In a non-centered parameterization of the Eq.~\ref{eq-cp}, we fit latent
+Gaussian variables instead of directly estimating \(\theta_j\):
+
+\begin{equation}\protect\hypertarget{eq-latent}{}{
+\tilde{\theta}_j \sim N(0, 1)
+}\label{eq-latent}\end{equation}
+
+\begin{equation}\protect\hypertarget{eq-ncp}{}{
+\theta_j = \mu + \tau \tilde{\theta}_j.
+}\label{eq-ncp}\end{equation}
+
+You can label each line too.
+
+The half-cauchy distribution in the Eq.~\ref{eq-cp} can be further
+rewritten as following:
+
+\[
+\begin{aligned}
+\tilde{\tau} \sim U(0, \pi / 2) \\
+\tau = 5 tan(\tilde{\tau})
+\end{aligned}
+\]
+
+You can also write equations without labels.
+
+Source codes can be loaded and printed, which may be useful for
+supporting information.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{ \{}
+  \DataTypeTok{int}\NormalTok{\textless{}}\KeywordTok{lower}\NormalTok{=}\DecValTok{0}\NormalTok{\textgreater{} J;}
+  \DataTypeTok{vector}\NormalTok{[J] y;}
+  \DataTypeTok{vector}\NormalTok{\textless{}}\KeywordTok{lower}\NormalTok{=}\DecValTok{0}\NormalTok{\textgreater{}[J] sigma;}
+\NormalTok{\}}
+
+\KeywordTok{parameters}\NormalTok{ \{}
+  \DataTypeTok{real}\NormalTok{ mu;}
+  \DataTypeTok{real}\NormalTok{\textless{}}\KeywordTok{lower}\NormalTok{=}\DecValTok{0}\NormalTok{,}\KeywordTok{upper}\NormalTok{=pi()/}\DecValTok{2}\NormalTok{\textgreater{} tau\_unif;}
+  \DataTypeTok{real}\NormalTok{ theta\_tilde[J];}
+\NormalTok{\}}
+
+\KeywordTok{transformed parameters}\NormalTok{ \{}
+  \DataTypeTok{real}\NormalTok{\textless{}}\KeywordTok{lower}\NormalTok{=}\DecValTok{0}\NormalTok{\textgreater{} tau;}
+  \DataTypeTok{real}\NormalTok{ theta[J];}
+\NormalTok{  tau = }\DecValTok{5}\NormalTok{ * tan(tau\_unif);}
+  \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in} \DecValTok{1}\NormalTok{:J)}
+\NormalTok{    theta[j] = mu + tau * theta\_tilde[j];}
+\NormalTok{\}}
+
+\KeywordTok{model}\NormalTok{ \{}
+\NormalTok{  mu \textasciitilde{} normal(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{);}
+\NormalTok{  theta\_tilde \textasciitilde{} std\_normal();}
+\NormalTok{  y \textasciitilde{} normal(theta, sigma);}
+\NormalTok{\}}
+
+\KeywordTok{generated quantities}\NormalTok{ \{}
+  \DataTypeTok{vector}\NormalTok{[J] log\_lik;}
+  \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in} \DecValTok{1}\NormalTok{:J) log\_lik[j] = normal\_lpdf(y[j] | theta[j], sigma[j]);}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{tables}{%
+\subsection{Tables}\label{tables}}
+
+It's easier to use \texttt{kableExtra} than manually writing markdown
+tables. Here is the R code chunk to produce
+Table~\ref{tbl-eight_schools}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{schools\_data }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}
+  \AttributeTok{School =}\NormalTok{ LETTERS[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{8}\NormalTok{],}
+  \StringTok{\textasciigrave{}}\AttributeTok{Estimated treatment effect, $y\_j$}\StringTok{\textasciigrave{}}  \OtherTok{=} \FunctionTok{c}\NormalTok{(}\DecValTok{28}\NormalTok{, }\DecValTok{8}\NormalTok{, }\SpecialCharTok{{-}}\DecValTok{3}\NormalTok{, }\DecValTok{7}\NormalTok{, }\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{18}\NormalTok{, }\DecValTok{12}\NormalTok{),}
+  \StringTok{\textasciigrave{}}\AttributeTok{Standard error of effect estimate, $}\SpecialCharTok{\textbackslash{}\textbackslash{}}\AttributeTok{sigma\_j$}\StringTok{\textasciigrave{}} \OtherTok{=} \FunctionTok{c}\NormalTok{(}\DecValTok{15}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{16}\NormalTok{, }\DecValTok{11}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{11}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{18}\NormalTok{))}
+
+\NormalTok{schools\_data }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{kbl}\NormalTok{(}\AttributeTok{booktabs =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{escape =} \ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{latex\_options =} \StringTok{"striped"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{figures}{%
+\subsection{Figures}\label{figures}}
+
+I currently prefer to use \texttt{!{[}{]}()} to insert images
+(Fig.~\ref{fig-theta_tau}; Fig.~\ref{fig-theta_intervals}) rather than
+using R code chunks. It's easy for cross-references and putting greek
+letters. The path for Fig.~\ref{fig-theta_tau} can be
+\texttt{figs/theta\_tau\_line.png} or
+\texttt{..figs/theta\_tau\_line.png} depending on where you are working.
+When you run \texttt{make} (i.e., Makefile), the first one is the
+correct path. When you use \texttt{render} in VSCode, the second one is
+correct. Using \texttt{here::here} is useful to specify the path to
+figures.
+
+\hypertarget{cross-reference-from-different-files}{%
+\subsection{Cross-reference from different
+files}\label{cross-reference-from-different-files}}
+
+We can also do cross-reference from different files, which is useful to
+refer figures and tables in supporting information.
+
+Fig. S\texttt{\textbackslash{}ref\{fig-hist\}}.
+
+The above command will render the following
+
+Fig. S\ref{fig-hist}.
+
+You need these in the YAML.
+
+\begin{verbatim}
+\usepackage{xr}
+\externaldocument{si}
+\end{verbatim}
+
+This only works on LaTeX.
+
+\hypertarget{parameterized-text}{%
+\subsection{Parameterized text}\label{parameterized-text}}
+
+The posterior median of treatment effect for school A (\(\theta_1\)) is
+\texttt{\textasciigrave{}r\ get\_post\_para(para,\ "theta{[}1{]}",\ "q50")\textasciigrave{}}
+with the 95\% credible interval of {[}
+\texttt{\textasciigrave{}\ r\ get\_post\_para(para,\ "theta{[}1{]}",\ "q2.5")\textasciigrave{}}
+,
+\texttt{\textasciigrave{}\ r\ get\_post\_para(para,\ "theta{[}1{]}",\ "q97.5",\ digits\ =\ 1,\ nsmall\ =\ 1)\textasciigrave{}}{]}.
+
+The above text will be rendered as following:
+
+The posterior median of treatment effect for school A (\(\theta_1\)) is
+5.68 with the 95\% credible interval of {[} -3.10 , 19.2{]}.
+
+\hypertarget{references}{%
+\section{References}\label{references}}
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{1}{0}
+\leavevmode\vadjust pre{\hypertarget{ref-Gelman2013}{}}%
+Gelman, A., J. B. Carlin, H. S. Stern, D. B. Dunson, A. Vehtari, and D.
+B. Rubin. 2013. Bayesian {Data Analysis}, {Third Edition}. {Chapman \&
+Hall/CRC}, {Boca Raton, FL, USA.}
+
+\leavevmode\vadjust pre{\hypertarget{ref-Landau2021}{}}%
+Landau, W. M. 2021. \href{https://doi.org/10.21105/joss.02959}{The
+targets {R} package: A dynamic {Make-like} function-oriented pipeline
+toolkit for reproducibility and high-performance computing}. Journal of
+Open Source Software 6:2959.
+
+\end{CSLReferences}
+
+\newpage
+
+\hypertarget{tables-1}{%
+\section{Tables}\label{tables-1}}
+
+\begin{table}
+
+\end{table}
+
+\hypertarget{tbl-eight_schools}{}
+\begin{table}[h!]
+\caption{\label{tbl-eight_schools}Observed effects of special preparation on SAT-V scores in eight
+randomized experiments }\tabularnewline
+
+
+\begin{tabular}[t]{lrr}
+\toprule
+School & Estimated treatment effect, $y_j$ & Standard error of effect estimate, $\sigma_j$\\
+\midrule
+\cellcolor{gray!6}{A} & \cellcolor{gray!6}{28} & \cellcolor{gray!6}{15}\\
+B & 8 & 10\\
+\cellcolor{gray!6}{C} & \cellcolor{gray!6}{-3} & \cellcolor{gray!6}{16}\\
+D & 7 & 11\\
+\cellcolor{gray!6}{E} & \cellcolor{gray!6}{-1} & \cellcolor{gray!6}{9}\\
+\addlinespace
+F & 1 & 11\\
+\cellcolor{gray!6}{G} & \cellcolor{gray!6}{18} & \cellcolor{gray!6}{10}\\
+H & 12 & 18\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Estimates are based on separate analyses for the eight experiments
+(\protect\hyperlink{ref-Gelman2013}{Gelman et al. 2013}).
+
+\begin{quote}
+\begin{itemize}
+\tightlist
+\item
+  I don't know how to add greek letters in the caption but at least I
+  can put greek letters outside the caption (e.g., \(\theta_j\)).
+\end{itemize}
+\end{quote}
+
+\begin{quote}
+\begin{itemize}
+\tightlist
+\item
+  There is a bug for table cross-reference
+  \href{https://github.com/quarto-dev/quarto-cli/discussions/2264\#discussioncomment-3541972}{(Section
+  titles appear after tables (PDF) \#2264)}.
+\end{itemize}
+\end{quote}
+
+\newpage
+
+\hypertarget{figures-1}{%
+\section{Figures}\label{figures-1}}
+
+\begin{figure}
+
+{\centering \includegraphics{/home/mattocci/project-template/figs/theta_tau_line.png}
+
+}
+
+\caption{\label{fig-theta_tau}The famous plot from Gelman et al.
+(\protect\hyperlink{ref-Gelman2013}{2013}). Conditional posterior means
+of treatment effects, \(E(\theta_j | \tau, y)\) is plotted against the
+between school standard deviation \(\tau\). The stan model was fitted
+using dynamic branches.}
+
+\end{figure}
+
+\newpage
+
+\begin{figure}
+
+{\centering \includegraphics{/home/mattocci/project-template/figs/theta_intervals.png}
+
+}
+
+\caption{\label{fig-theta_intervals}The posterior means, 50\% and 90\%
+credible intervals of treatment effects (\(\theta_j\)).}
+
+\end{figure}
+
+
+
+\end{document}

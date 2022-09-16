@@ -1,0 +1,241 @@
+---
+fontsize: 12pt
+geometry: margin=1in
+link-citations: yes
+csl: ecology.csl
+bibliography: library.bib
+crossref:
+  fig-title: Fig.
+  fig-prefix: Fig.
+  eq-prefix: Eq.
+always_allow_html: true
+tbl-cap-location: bottom
+format:
+  pdf:
+    toc: false
+    keep-tex: true
+    latex-clean: false
+    pdf-engine: pdflatex
+    include-in-header:
+      text: |
+        \usepackage{xr}
+        \externaldocument{si}
+        \usepackage[default]{sourcesanspro}
+        \usepackage{sourcecodepro}
+        \usepackage{lineno}
+        \usepackage{fvextra}
+        \linenumbers
+        \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+  docx:
+    toc: false
+    number-sections: false
+    highlight-style: github
+    html-math-method: katex
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+```{r, include=FALSE}
+library(tidyverse)
+library(here)
+library(knitr)
+library(kableExtra)
+here::i_am("ms/manuscript.qmd")
+source(here("R/functions.R"))
+para <- read_csv(here("data/fit_summary_model.csv"))
+```
+
+
+**Title: Title of your manuscript**
+
+$$ $$
+
+First Author^1,2^,
+Second Author^2^, and
+Third Author^3^
+
+$$ $$
+
+^1^ First Affiliation
+
+^2^ Second Affiliation
+
+^3^ Third Affiliation
+
+
+Your abstract.
+
+# Introduction
+
+This is a manuscript template for Quarto markdown that uses R packages `targets` [@Landau2021] and `stantargets`.
+`R/functions.R` contains R codes that I often use.
+
+# Examples
+
+## Equations
+
+A centered parameterization of the Eight Schools model (@eq-cp; @Gelman2013).
+
+$$
+\begin{aligned}
+\mu &\sim N(0,5) \\
+\tau &\sim HalfCauchy(0,5) \\
+\theta_j &\sim N(\mu, \tau) \\
+y_j &\sim N(\theta_j, \sigma_j)
+\end{aligned}
+$$ {#eq-cp}
+
+You can group multiple lines of equations to a single equation label.
+
+In a non-centered parameterization of the @eq-cp, we fit latent Gaussian variables instead of directly estimating $\theta_j$:
+
+$$
+\tilde{\theta}_j \sim N(0, 1)
+$$ {#eq-latent}
+
+$$
+\theta_j = \mu + \tau \tilde{\theta}_j.
+$$  {#eq-ncp}
+
+You can label each line too.
+
+The half-cauchy distribution in the @eq-cp can be further rewritten as following:
+
+$$
+\begin{aligned}
+\tilde{\tau} \sim U(0, \pi / 2) \\
+\tau = 5 tan(\tilde{\tau})
+\end{aligned}
+$$
+
+You can also write equations without labels.
+
+Source codes can be loaded and printed, which may be useful for supporting information.
+
+```{stan, file=here::here('stan/model.stan'), echo=TRUE, eval=FALSE, output.var="hoge"}
+```
+
+## Tables
+
+It's easier to use `kableExtra` than manually writing markdown tables.
+Here is the R code chunk to produce @tbl-eight_schools.
+
+```{r, echo = TRUE, eval=FALSE}
+schools_data <- tibble(
+  School = LETTERS[1:8],
+  `Estimated treatment effect, $y_j$`  = c(28, 8, -3, 7, -1, 1, 18, 12),
+  `Standard error of effect estimate, $\\sigma_j$` = c(15, 10, 16, 11, 9, 11, 10, 18))
+
+schools_data |>
+  kbl(booktabs = TRUE, escape = FALSE) |>
+    kable_styling(latex_options = "striped")
+```
+
+## Figures
+
+I currently prefer to use `![]()` to insert images (@fig-theta_tau; @fig-theta_intervals) rather than using R code chunks.
+It's easy for cross-references and putting greek letters.
+The path for @fig-theta_tau can be `figs/theta_tau_line.png` or `..figs/theta_tau_line.png` depending on where you are working.
+When you run `make` (i.e., Makefile), the first one is the correct path.
+When you use `render` in VSCode, the second one is correct.
+Using `here::here` is useful to specify the path to figures.
+
+## Cross-reference from different files
+
+We can also do cross-reference from different files, which is useful to refer figures and tables in supporting information.
+
+Fig. S`\ref{fig-hist}`.
+
+The above command will render the following
+
+Fig. S\ref{fig-hist}.
+
+You need these in the YAML.
+
+```
+\usepackage{xr}
+\externaldocument{si}
+```
+
+This only works on LaTeX.
+
+## Parameterized text
+
+The posterior median of treatment effect for school A ($\theta_1$) is
+`` `r
+get_post_para(para, "theta[1]", "q50")` ``
+with the 95% credible interval of
+[
+`` ` r
+get_post_para(para, "theta[1]", "q2.5")` ``
+,
+`` ` r
+get_post_para(para, "theta[1]", "q97.5", digits = 1, nsmall = 1)` ``
+].
+
+The above text will be rendered as following:
+
+The posterior median of treatment effect for school A ($\theta_1$) is
+`r get_post_para(para, "theta[1]", "q50")`
+with the 95% credible interval of
+[
+`r get_post_para(para, "theta[1]", "q2.5")`
+,
+`r get_post_para(para, "theta[1]", "q97.5", digits = 1, nsmall = 1)`
+].
+
+
+# References
+
+<div id="refs"></div>
+
+\newpage
+
+# Tables
+
+```{r, echo=FALSE, eval=FALSE}
+#| label: tbl-iris
+#| tbl-cap: "Iris Data"
+library(knitr)
+kable(head(iris), format = "latex", table.envir = "table", position = "h!")
+```
+
+```{r, echo=FALSE, eval=TRUE}
+#| label: tbl-eight_schools
+#| tbl-cap: "Observed effects of special preparation on SAT-V scores in eight randomized experiments"
+
+schools_data <- tibble(
+  School = LETTERS[1:8],
+  `Estimated treatment effect, $y_j$`  = c(28, 8, -3, 7, -1, 1, 18, 12),
+  `Standard error of effect estimate, $\\sigma_j$` = c(15, 10, 16, 11, 9, 11, 10, 18))
+
+schools_data |>
+  kbl(booktabs = TRUE, escape = FALSE, table.envir = "table", position = "h!") |>
+    kable_styling(latex_options = "striped")
+```
+
+Estimates are based on separate analyses for the eight experiments [@Gelman2013].
+
+> - I don't know how to add greek letters in the caption but at least I can put greek letters outside the caption (e.g., $\theta_j$).
+
+> - There is a bug for table cross-reference [(Section titles appear after tables (PDF) #2264)
+](https://github.com/quarto-dev/quarto-cli/discussions/2264#discussioncomment-3541972).
+
+\newpage
+
+# Figures
+
+![
+The famous plot from @Gelman2013.
+Conditional posterior means of treatment effects, $E(\theta_j | \tau, y)$ is plotted against the between school standard deviation $\tau$.
+The stan model was fitted using dynamic branches.
+](`r here::here("figs/theta_tau_line.png")`){#fig-theta_tau}
+
+
+\newpage
+
+![
+The posterior means, 50% and 90% credible intervals of treatment effects ($\theta_j$).
+](`r here::here("figs/theta_intervals.png")`){#fig-theta_intervals}

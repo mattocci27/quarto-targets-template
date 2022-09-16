@@ -1,0 +1,26 @@
+BootStrap: docker
+From: mattocci/radian-verse:4.2.1
+
+%apprun R
+  exec R "${@}"
+
+%apprun Rscript
+  exec Rscript "${@}"
+
+%runscript
+  exec R "${@}"
+
+%environment
+%post
+  DEBIAN_FRONTEND=noninteractive
+  export RENV_VERSION=0.15.5
+
+  # Install renv
+  R -e "remotes::install_github('rstudio/renv@${RENV_VERSION}')"
+
+  # Install cmdstan
+  installGithub.r \
+    stan-dev/cmdstanr
+
+  mkdir -p  /opt/cmdstan \
+    && Rscript -e "cmdstanr::install_cmdstan(dir = '/opt/cmdstan', release_url = 'https://ghproxy.com/https://github.com/stan-dev/cmdstan/releases/download/v2.29.2/cmdstan-2.29.2.tar.gz', cores = 8, timeout = 3600)"

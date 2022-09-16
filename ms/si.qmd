@@ -1,0 +1,58 @@
+---
+fontsize: 12pt
+geometry: margin=1in
+link-citations: yes
+csl: ecology.csl
+bibliography: library.bib
+crossref:
+  fig-title: Fig S.
+  fig-prefix: Fig S.
+  eq-prefix: Eq.
+always_allow_html: true
+tbl-cap-location: bottom
+format:
+  pdf:
+    toc: false
+    keep-tex: true
+    latex-clean: false
+    pdf-engine: pdflatex
+    include-in-header:
+      text: |
+        \usepackage{xr}
+        \usepackage[default]{sourcesanspro}
+        \usepackage{sourcecodepro}
+        \usepackage{lineno}
+        \usepackage{fvextra}
+        \linenumbers
+        \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+  docx:
+    toc: false
+    number-sections: false
+    highlight-style: github
+    html-math-method: katex
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+```{r, include=FALSE}
+library(tidyverse)
+library(here)
+library(knitr)
+library(kableExtra)
+here::i_am("ms/manuscript.qmd")
+source(here("R/functions.R"))
+para <- read_csv(here("data/fit_summary_model.csv"))
+```
+
+
+Some figure
+
+```{r}
+#| label: fig-hist
+#| fig-cap: "Histogram"
+
+set.seed(123)
+hist(rnorm(100))
+```
