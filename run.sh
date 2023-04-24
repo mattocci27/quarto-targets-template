@@ -5,7 +5,7 @@ menu() {
 	echo "1) tar_make() on local"
 	echo "2) tar_make() on Apptainer"
 	echo "3) Enter in the Apptainer container"
-	read -rp "Eenter number：" menu_num
+	read -rp "Enter number：" menu_num
   case $menu_num in
   1)
     Rscript run.R
