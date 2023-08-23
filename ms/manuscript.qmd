@@ -1,7 +1,7 @@
 ---
 fontsize: 12pt
 geometry: margin=1in
-link-citations: yes
+link-citations: true
 csl: ecology.csl
 bibliography: library.bib
 crossref:
