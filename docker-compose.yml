@@ -1,0 +1,11 @@
+version: '3'
+services:
+  quarto-targets-template:
+    image: mattocci/cmdstan-verse-zsh:4.3.2
+    container_name: quarto-targets-template
+    user: rstudio
+    environment:
+      - RENV_PATHS_CACHE=/renv
+    volumes:
+      - $HOME/quarto-targets-template:/home/rstudio/quarto-targets-template
+      - $HOME/renv:/renv

@@ -1,0 +1,11 @@
+version: '3'
+services:
+  PROJECT_NAME_PLACEHOLDER:
+    image: mattocci/cmdstan-verse-zsh:4.3.2
+    container_name: PROJECT_NAME_PLACEHOLDER
+    user: rstudio
+    environment:
+      - RENV_PATHS_CACHE=/renv
+    volumes:
+      - $HOME/PROJECT_NAME_PLACEHOLDER:/home/rstudio/PROJECT_NAME_PLACEHOLDER
+      - $HOME/renv:/renv

@@ -7,12 +7,12 @@ data {
 parameters {
   real mu;
   real<lower=0,upper=pi()/2> tau_unif;
-  real theta_tilde[J];
+  array[J] real theta_tilde;
 }
 
 transformed parameters {
   real<lower=0> tau;
-  real theta[J];
+  array[J] real theta;
   tau = 5 * tan(tau_unif);
   for (j in 1:J)
     theta[j] = mu + tau * theta_tilde[j];

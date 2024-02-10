@@ -11,14 +11,10 @@ menu() {
     Rscript run.R
     ;;
   2)
- 		apptainer exec --env RENV_PATHS_CACHE=/home/${USER}/renv \
-		--env RENV_PATHS_PREFIX_AUTO=TRUE \
- 		radian.sif Rscript run.R
+ 		apptainer exec radian.sif Rscript run.R
     ;;
   3)
- 		apptainer shell --env RENV_PATHS_CACHE=/home/${USER}/renv \
-		--env RENV_PATHS_PREFIX_AUTO=TRUE \
- 		radian.sif bash
+ 		apptainer shell radian.sif bash
     ;;
 	*)
     echo "Type 1-3"

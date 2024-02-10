@@ -7,11 +7,11 @@ data {
 
 parameters {
   real mu;
-  real theta_tilde[J];
+  array[J] real theta_tilde;
 }
 
 transformed parameters {
-  real theta[J];
+  array[J] real theta;
   for (j in 1:J)
     theta[j] = mu + tau * theta_tilde[j];
 }
