@@ -18,6 +18,16 @@
 	// connected. This is typically a file mount in .devcontainer/docker-compose.yml
 	"workspaceFolder": "/home/rstudio/${localWorkspaceFolderBasename}"
 
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"reditorsupport.r",
+				"quarto.quarto",
+				"mhutchie.git-graph",
+				"donjayamanne.githistory"
+			]
+		}
+	}
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
 
