@@ -18,6 +18,13 @@
 	// connected. This is typically a file mount in .devcontainer/docker-compose.yml
 	"workspaceFolder": "/home/rstudio/${localWorkspaceFolderBasename}"
 
+	"runArgs": [
+		"-v", "${env:SSH_AUTH_SOCK}:/ssh-agent"
+	],
+	"containerEnv": {
+			"SSH_AUTH_SOCK": "/ssh-agent"
+	},
+
 	"customizations": {
 		"vscode": {
 			"extensions": [
