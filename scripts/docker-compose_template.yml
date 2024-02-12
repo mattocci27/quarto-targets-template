@@ -6,6 +6,7 @@ services:
     user: rstudio
     environment:
       - RENV_PATHS_CACHE=/renv
+      - INSIDE_DOCKER=true
     volumes:
       - $HOME/PROJECT_NAME_PLACEHOLDER:/home/rstudio/PROJECT_NAME_PLACEHOLDER
       - $HOME/renv:/renv

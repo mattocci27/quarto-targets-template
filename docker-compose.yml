@@ -6,6 +6,7 @@ services:
     user: rstudio
     environment:
       - RENV_PATHS_CACHE=/renv
+      - INSIDE_DOCKER=true
     volumes:
       - $HOME/quarto-targets-template:/home/rstudio/quarto-targets-template
       - $HOME/renv:/renv

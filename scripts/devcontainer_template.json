@@ -26,18 +26,21 @@
 	},
 
 	"customizations": {
-		"vscode": {
-			"extensions": [
-				"reditorsupport.r",
-				"quarto.quarto",
-				"mhutchie.git-graph",
-				"donjayamanne.githistory",
-				"rlivings39.fzf-quick-open"
-			]
-		}
-	},
-  "settings": {
-		"r.rterm.linux": "/usr/local/bin/radian"
+			"vscode": {
+					"extensions": [
+							"reditorsupport.r",
+							"quarto.quarto",
+							"mhutchie.git-graph",
+							"donjayamanne.githistory",
+							"rlivings39.fzf-quick-open"
+					],
+					"settings": {
+							"r.rterm.linux": "/usr/local/bin/radian",
+							"r.libPaths": [
+									"/home/rstudio/vscode-R/renv/library/R-4.3/x86_64-pc-linux-gnu"
+							]
+					}
+			}
 	}
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
